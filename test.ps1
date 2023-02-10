@@ -7,7 +7,7 @@ $AzureContext = Set-AzContext -SubscriptionName $AzureContext.Subscription -Defa
 
 
 $vault_keys = Get-AzKeyVault
-
+Write-Output("#######################################################")
 foreach ($key_vault in $vault_keys)
 {    
     
@@ -17,10 +17,10 @@ foreach ($key_vault in $vault_keys)
     {
         
         #secret.SecretValue | ConvertFrom-SecureString -AsPlainText 
+        Write-Output($secret)
         $secretText = Get-AzKeyVaultSecret -VaultName $key_vault.VaultName -Name $secret.Name -AsPlainText
-        Write-Output($secretText)
-        
+        Write-Output("Secret Value is : " + $secretText)
+        Write-Output("#######################################################")
         
     }
 }
-
